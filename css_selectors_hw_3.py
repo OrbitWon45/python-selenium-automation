@@ -30,6 +30,7 @@ driver.find_element(By.CSS_SELECTOR, "#ap_email")
 driver.find_element(By.ID, 'ap_password')
 
 # text "password must be at least 6 characters"
+driver.find_element(By.CSS_SELECTOR, '.a-box.a-alert-inline.a-alert-inline-info.auth-inlined-information-message.a-spacing-top-mini div.a-alert-content')
 
 # re-enter password field
 driver.find_element(By.ID, 'ap_password_check')
