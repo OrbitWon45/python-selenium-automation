@@ -1,6 +1,8 @@
 from behave import given, when, then
 from selenium.webdriver.common.by import By
 from time import sleep
+from selenium.webdriver.support import expected_conditions as EC
+
 
 PRODUCT_TEXT_RESULT = (By.CSS_SELECTOR, '.a-color-state.a-text-bold')
 EMPTY_CART_TEXT = (By.CSS_SELECTOR, 'div.a-row.sc-your-amazon-cart-is-empty')
@@ -23,13 +25,9 @@ def verify_search_result(context, expected_result):
 
 @then('verify cart is empty')
 def verify_cart_is_empty_on_amazon(context):
-
     expected_result = 'Your Amazon Cart is empty'
-
     actual_result = context.driver.find_element(*EMPTY_CART_TEXT).text
-
     assert expected_result == actual_result, f'expected {expected_result} not the same as {actual_result}'
-
     print('test case passed!')
 
 
