@@ -7,7 +7,7 @@ Feature: Product tests
     When Search for NOVIVON 5 Pack Reading Glasses for Men
     When Pick a pair of glasses
     When Store product name
-    When add product to cart
+    When Add product to cart
     When click cart
     Then Verify glasses are added to cart
 

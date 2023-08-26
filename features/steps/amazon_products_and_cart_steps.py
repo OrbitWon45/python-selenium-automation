@@ -16,28 +16,29 @@ def open_amazon_product(context, product_id):
     context.driver.get(f'https://www.amazon.com/dp/{product_id}/')
 
 
-@when('pick a pair of glasses')
+@when('Pick a pair of glasses')
 def pick_a_pair_of_glasses(context):
     context.driver.wait.until(EC.element_to_be_clickable(NOVISON_5_PACK_READING_GLASSES)).click()
 
 
-@when('STORE PRODUCT NAME')
+@when('Store product name')
 def store_product_name(context):
     context.product_name = context.driver.find_element(*PRODUCT_NAME).text
 
 
 
-@when('add product to cart')
+@when('Add product to cart')
 def add_product_to_cart(context):
     context.driver.wait.until(EC.element_to_be_clickable(CLICK_ADD_TO_CART)).click()
 
 
-@then('verify glasses are added to cart')
+@then('Verify glasses are added to cart')
 def verify_glasses_are_added_to_cart(context):
     expected_result = context.product_name
     actual_result = context.driver.find_element(*NOVISON_5_PACK_READING_GLASSES_TEXT).text
-    assert expected_result[:30] == actual_result[:30], f'expected product {expected_result[:30]} does not match actual product {actual_result[:30]}'
-    print('test case passed!')
+    assert expected_result[:30] == actual_result[:30],\
+        f'expected product {expected_result[:30]} does not match actual product {actual_result[:30]}'
+
 
 
 @then('Verify user can click through options')
@@ -50,4 +51,4 @@ def verify_user_can_click_options(context):
         current_color = context.driver.find_element(*CURRENT_COLOR).text
         actual_colors.append(current_color)
     assert actual_colors == expected_colors, f'Expected {expected_colors} did not match actual {actual_colors}'
-    print('test case passed')
+
