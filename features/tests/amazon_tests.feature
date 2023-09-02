@@ -13,6 +13,12 @@ Feature: Amazon tests
     Then Verify sign in page opened
 
 
+  Scenario: Amazon user sees signin button disappears
+    Given Open Amazon page
+    When Verify Signin btn is clickable
+    When Wait for 6 seconds
+    Then Verify Signin btn disappears
+
   Scenario: Verify that clicking a empty cart tells you 'Your Amazon Cart is empty'
     Given Open Amazon page
     When Click cart

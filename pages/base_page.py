@@ -1,8 +1,12 @@
+from selenium.webdriver.support.wait import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+
 class Page:
 
 
     def __init__(self, driver):
         self.driver = driver
+        self.wait = WebDriverWait(self.driver, 10)
 
     def click(self, *locator):
         self.driver.find_element(*locator).click()
@@ -13,3 +17,30 @@ class Page:
     def input_text(self, text, *locator):
         e = self.driver.find_element(*locator)
         e.send_keys(text)
+
+
+    def wait_for_element_clickable(self, *locator):
+        self.wait.until(EC.element_to_be_clickable(locator),
+             message=f'element not clickable: {locator}')
+
+
+    def wait_for_element_clickable_click(self, *locator):
+        e = self.wait.until(EC.element_to_be_clickable(locator),
+             message=f'element not clickable: {locator}')
+        e.click()
+
+    def wait_for_element_disappear(self, *locator):
+        self.wait.until(EC.invisibility_of_element_located(locator),
+                        message=f'element did not disappear: {locator}')
+
+
+
+    def verify_text(self, expected_text, *locator):
+        actual_text = self.find_element(*locator).text
+        assert actual_text == expected_text, \
+            f'Error, expected {expected_text} did not match actual {actual_text}'
+
+    def verify_partial_text(self, expected_text, *locator):
+        actual_text = self.find_element(*locator).text
+        assert expected_text in actual_text, \
+            f'Error, partial expected {expected_text} not in actual {actual_text}.'

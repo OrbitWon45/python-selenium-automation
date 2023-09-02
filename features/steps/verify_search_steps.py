@@ -4,8 +4,8 @@ from time import sleep
 from selenium.webdriver.support import expected_conditions as EC
 
 
-SEARCH_RESULT = (By.CSS_SELECTOR, '.a-color-state.a-text-bold')
-EMPTY_CART_TEXT = (By.CSS_SELECTOR, 'div.a-row.sc-your-amazon-cart-is-empty')
+
+
 LINKS = (By.CSS_SELECTOR, '#zg_header a')
 
 
@@ -18,13 +18,6 @@ def open_best_sellers_page(context):
 @then('verify search result is {expected_result}')
 def verify_search_result(context, expected_result):
     context.app.search_result_page.verify_search_result(expected_result)
-
-
-@then('verify cart is empty')
-def verify_cart_is_empty_on_amazon(context):
-    expected_result = 'Your Amazon Cart is empty'
-    actual_result = context.driver.find_element(*EMPTY_CART_TEXT).text
-    assert expected_result == actual_result, f'expected {expected_result} not the same as {actual_result}'
 
 
 @then('verify {expected_amount} links are present')

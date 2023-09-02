@@ -5,7 +5,7 @@ Feature: Product tests
     Scenario: Verify that you can add a product to the cart
     Given Open Amazon page
     When Search for NOVIVON 5 Pack Reading Glasses for Men
-    When Pick a pair of glasses
+    When Click on glasses
     When Store product name
     When Add product to cart
     When click cart

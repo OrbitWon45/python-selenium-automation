@@ -1,19 +1,20 @@
 from behave import given, when, then
 from selenium.webdriver.common.by import By
-from time import sleep
 from selenium.webdriver.support import expected_conditions as EC
+from time import sleep
 
-SEARCH_FIELD = (By.ID, 'twotabsearchtextbox')
-SEARCH_BNT = (By.ID, 'nav-search-submit-button')
-CLICK_ORDERS = (By.ID, 'nav-orders')
-CLICK_CART = (By.ID, 'nav-cart')
+
+
 FOOTER_LINKS = (By.CSS_SELECTOR, '.navFooterDescItem')
-SIGNIN_BTN = (By.CSS_SELECTOR, '#nav-signin-tooltip .nav-action-signin-button')
 
 
 @given('open amazon page')
-def open_amazon(context):
+def open_amazon_page(context):
     context.app.main_page.open_main()
+
+@when('wait for 6 seconds')
+def wait_for_seconds(context):
+    sleep(6)
 
 
 @when('Search for {product}')
@@ -29,16 +30,22 @@ def click_orders_on_amazon(context):
 
 @when('click cart')
 def click_cart_on_amazon(context):
-    context.driver.wait.until(EC.element_to_be_clickable(CLICK_CART)).click()
+    context.app.header.click_cart_on_amazon()
 
 
 @when('Click on button from SignIn popup')
 def click_signin_from_popup(context):
-    context.driver.wait.until(
-        EC.element_to_be_clickable(SIGNIN_BTN),
-        message='SignIn btn from popup not clickable'
-    ).click()
+    context.app.header.click_signin_from_popup()
 
+
+@when('verify signin btn is clickable')
+def verify_signin_btn_is_clickable(context):
+    context.app.header.verify_signin_btn_is_clickable()
+
+
+@then('verify signin btn disappears')
+def verify_signin_btn_disappears(context):
+    context.app.header.verify_signin_btn_disappears()
 
 
 @then('Verify footer has {expected_amount} links')
