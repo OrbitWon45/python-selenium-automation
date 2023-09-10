@@ -14,9 +14,36 @@ class Page:
     def find_element(self, *locator):
         return self.driver.find_element(*locator)
 
+
+    def find_elements(self, *locator):
+        return self.driver.find_elements(*locator)
+
     def input_text(self, text, *locator):
         e = self.driver.find_element(*locator)
         e.send_keys(text)
+
+    def get_current_window(self):
+        return self.driver.current_window_handle
+
+    def get_windows(self):
+        windows = self.driver.window_handles
+        print(windows)
+        return windows
+
+    def switch_to_new_window(self):
+        self.wait.until(EC.new_window_is_opened)
+        all_windows = self.driver.window_handles
+        print(all_windows)
+        print(f'switching to {all_windows[1]}')
+        self.driver.switch_to.window(all_windows[1])
+
+    def return_to_original_window(self, window_id):
+        print(f'switching to {window_id}')
+        self.driver.switch_to.window(window_id)
+
+
+    def close_page(self):
+        self.driver.close()
 
 
     def wait_for_element_clickable(self, *locator):
@@ -44,3 +71,6 @@ class Page:
         actual_text = self.find_element(*locator).text
         assert expected_text in actual_text, \
             f'Error, partial expected {expected_text} not in actual {actual_text}.'
+
+    def verify_partial_url(self, expected_part_of_url):
+        self.wait.until(EC.url_contains(expected_part_of_url))

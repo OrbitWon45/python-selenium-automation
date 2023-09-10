@@ -10,9 +10,10 @@ LINKS = (By.CSS_SELECTOR, '#zg_header a')
 
 
 
-@given('open best sellers page')
-def open_best_sellers_page(context):
-    context.driver.get('https://www.amazon.com/gp/bestsellers/?ref_=nav_cs_bestsellers')
+@given('open amazon bestsellers')
+def open_amazon_bestsellers(context):
+    context.app.bestsellers_page.open_amazon_bestsellers()
+
 
 
 @then('verify search result is {expected_result}')
@@ -21,7 +22,10 @@ def verify_search_result(context, expected_result):
 
 
 @then('verify {expected_amount} links are present')
-def verify_5_links_are_present(context, expected_amount):
-    expected_amount = int(expected_amount)
-    links = context.driver.find_elements(*LINKS)
-    assert  len(links) == expected_amount, f'Expected {expected_amount} links but got {len(links)}'
+def verify_links_are_present(context, expected_amount):
+    context.app.bestsellers_page.verify_links_are_present(expected_amount)
+
+
+@then('user can click thr top links')
+def click_thr_top_links(context):
+    context.app.bestsellers_page.click_thr_top_links()

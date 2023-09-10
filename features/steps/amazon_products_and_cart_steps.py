@@ -9,7 +9,7 @@ CURRENT_COLOR = (By.CSS_SELECTOR, 'div.a-row span.selection')
 
 @given('Open Amazon product {product_id} page')
 def open_amazon_product(context, product_id):
-    context.driver.get(f'https://www.amazon.com/dp/{product_id}/')
+    context.app.products_page.open_amazon_product(product_id)
 
 
 @when('click on glasses')
