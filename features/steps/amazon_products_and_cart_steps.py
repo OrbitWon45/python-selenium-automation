@@ -17,6 +17,11 @@ def click_on_glasses(context):
     context.app.products_page.click_on_glasses()
 
 
+@when('Hover over New Arrivals')
+def hover_new_arrivals(context):
+    context.app.header.hover_new_arrivals()
+
+
 @when('Store product name')
 def store_product_name(context):
     context.app.cart_page.store_product_name()
@@ -49,4 +54,9 @@ def verify_user_can_click_options(context):
 @then('verify cart is empty')
 def verify_cart_is_empty_on_amazon(context):
     context.app.cart_page.verify_cart_is_empty_on_amazon()
+
+
+@then('Verify user sees dropdown')
+def verify_user_sees_dropdown(context):
+    context.app.header.verify_user_sees_dropdown()
 

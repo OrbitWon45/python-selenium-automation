@@ -17,10 +17,6 @@ class SignInPage(Page):
         self.click(*self.PRIVACY_NOTICE_LINK)
 
 
-    def store_original_window(self):
-        return self.get_current_window()
-
-
     def verify_privacy_notice_page_opened(self):
         self.verify_text('Amazon.com Privacy Notice',
                          *self.PRIVACY_NOTICE_HEADER

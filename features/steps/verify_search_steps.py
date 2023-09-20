@@ -29,3 +29,8 @@ def verify_links_are_present(context, expected_amount):
 @then('user can click thr top links')
 def click_thr_top_links(context):
     context.app.bestsellers_page.click_thr_top_links()
+
+
+@then('Verify {dept} department is selected')
+def verify_department_selected(context, dept):
+    context.app.header.verify_department_selected(dept)

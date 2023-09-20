@@ -1,7 +1,7 @@
 from behave import given, when, then
 from selenium.webdriver.common.by import By
-from selenium.webdriver.support import expected_conditions as EC
 from time import sleep
+
 
 
 
@@ -17,9 +17,18 @@ def wait_for_seconds(context):
     sleep(6)
 
 
+@when('Hover over language options')
+def hover_language(context):
+    context.app.header.hover_language()
+
 @when('Search for {product}')
 def search_on_amazon(context, product):
     context.app.header.search_product(product)
+
+
+@when('Select department by alias {dept}')
+def select_department(context, dept):
+    context.app.header.select_department(dept)
 
 
 @when('click Orders')
@@ -52,7 +61,13 @@ def verify_signin_btn_disappears(context):
 def verify_link_amount(context, expected_amount):
     expected_amount = int(expected_amount)
     links = context.driver.find_elements(*FOOTER_LINKS)
-    assert len(links) == expected_amount, f'Expected {expected_amount} links but got {len(links)}'
+    assert len(links) == expected_amount,\
+        f'Expected {expected_amount} links but got {len(links)}'
+
+
+@then('Verify Spanish option present')
+def verify_spanish_option_present(context):
+    context.app.header.verify_spanish_option_present()
 
 
 

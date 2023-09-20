@@ -61,6 +61,11 @@ class Page:
                         message=f'element did not disappear: {locator}')
 
 
+    def wait_for_element_to_appear(self, *locator):
+        self.wait.until(EC.visibility_of_element_located(locator),
+                        message=f'element did not appear: {locator}')
+
+
 
     def verify_text(self, expected_text, *locator):
         actual_text = self.find_element(*locator).text

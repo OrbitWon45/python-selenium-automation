@@ -7,7 +7,7 @@ def open_t_and_c_page(context):
 
 @when('Store original window')
 def store_original_window(context):
-    context.original_window = context.app.signin_page.store_original_window()
+    context.original_window = context.app.signin_page.get_current_window()
 
 
 @when('Click on Amazon Privacy Notice link')
