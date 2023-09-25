@@ -1,12 +1,11 @@
 from pages.base_page import Page
 from time import sleep
-
+from suport.logging import logger
 
 
 class MainPage(Page):
 
     def open_main(self):
-        self.driver.get('https://www.amazon.com/')
-        sleep(2)
+        self.open_url()
 
 

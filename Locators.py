@@ -34,3 +34,9 @@ driver.find_element(By.XPATH, "//a[contains(text(), 't Seller') and @class='nav-
 
 # //parent[...]//child[...]
 driver.find_element(By.XPATH, "//div[@id='nav-belt']//input[@placeholder='Search Amazon']")
+
+# Allure Terminal Comands
+
+# behave -f allure_behave.formatter:AllureFormatter -o test_results/ features/tests/amazon_search.feature
+
+# allure serve test_results/

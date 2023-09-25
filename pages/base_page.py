@@ -1,5 +1,7 @@
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from suport.logging import logger
+from time import sleep
 
 class Page:
 
@@ -8,10 +10,20 @@ class Page:
         self.driver = driver
         self.wait = WebDriverWait(self.driver, 10)
 
+
+    def open_url(self, end_url=''):
+        url = f'https://www.amazon.com/{end_url}'
+        self.driver.get(url)
+        logger.info(f'Opening URL {url}')
+        sleep(2)
+        self.driver.refresh()
+
     def click(self, *locator):
+        logger.info(f'clicking on {locator}')
         self.driver.find_element(*locator).click()
 
     def find_element(self, *locator):
+        logger.info(f'searching for {locator}')
         return self.driver.find_element(*locator)
 
 
@@ -19,7 +31,8 @@ class Page:
         return self.driver.find_elements(*locator)
 
     def input_text(self, text, *locator):
-        e = self.driver.find_element(*locator)
+        e = self.find_element(*locator)
+        logger.info(f'inputting text "{text}"')
         e.send_keys(text)
 
     def get_current_window(self):
@@ -52,6 +65,7 @@ class Page:
 
 
     def wait_for_element_clickable_click(self, *locator):
+        logger.info(f'clicking on {locator}')
         e = self.wait.until(EC.element_to_be_clickable(locator),
              message=f'element not clickable: {locator}')
         e.click()

@@ -1,12 +1,12 @@
 # Created by white at 8/11/2023
 Feature: Amazon tests
-
+  @smoke
   Scenario: Logged out user sees Sign in page when clicking Orders
     Given Open Amazon page
     When Click Orders
     Then Verify sign in page opened
 
-
+  @smoke
   Scenario: Sign In page can be opened from SignIn popup
     Given Open Amazon page
     When Click on button from SignIn popup

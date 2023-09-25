@@ -1,7 +1,8 @@
 # Created by white at 8/18/2023
+@product
 Feature: Product tests
 
-
+    @smoke
     Scenario: Verify that you can add a product to the cart
         Given Open Amazon page
         When Search for NOVIVON 5 Pack Reading Glasses for Men
@@ -11,7 +12,7 @@ Feature: Product tests
         When click cart
         Then Verify glasses are added to cart
 
-
+    @smoke
     Scenario Outline: Verify that a user can search for a product
         Given Open Amazon page
         When Search for <search_product>

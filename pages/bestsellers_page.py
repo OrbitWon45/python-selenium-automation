@@ -10,7 +10,7 @@ class BestSellersPage(Page):
 
 
     def open_amazon_bestsellers(self):
-        self.driver.get('https://www.amazon.com/gp/bestsellers/?ref_=nav_cs_bestsellers')
+        self.open_url('gp/bestsellers/')
         sleep(2)
         self.driver.refresh()
 
@@ -21,6 +21,7 @@ class BestSellersPage(Page):
             link_to_click = self.find_elements(*self.TOP_LINKS)[i]
             link_text = link_to_click.text
             link_to_click.click()
+            sleep(1)
             self.verify_partial_text(link_text, *self.HEADER)
 
     def verify_links_are_present(self, expected_amount):
