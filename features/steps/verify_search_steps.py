@@ -15,7 +15,6 @@ def open_amazon_bestsellers(context):
     context.app.bestsellers_page.open_amazon_bestsellers()
 
 
-
 @then('verify search result is {expected_result}')
 def verify_search_result(context, expected_result):
     context.app.search_result_page.verify_search_result(expected_result)

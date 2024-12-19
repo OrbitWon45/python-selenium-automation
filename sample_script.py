@@ -1,13 +1,12 @@
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.service import Service
-from webdriver_manager.chrome import ChromeDriverManager
 from time import sleep
 
 
 
 # create a new Chrome browser instance
-service = Service(executable_path=r'C:\Users\white\python-selenium-automation\chromedriver-win64')
+service = Service(executable_path=r'C:\Users\white\Downloads\internship-project\internship-project-1\chromedriver.exe')
 driver = webdriver.Chrome(service=service)
 driver.maximize_window()
 

@@ -11,4 +11,7 @@ class ProductsPage(Page):
     def open_amazon_product(self, product_id):
         self.driver.get(f'https://www.amazon.com/dp/{product_id}/')
         sleep(2)
+        self.driver.refresh()
+
+
 
